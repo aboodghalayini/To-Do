@@ -1,0 +1,25 @@
+<div >
+    <header>{{ title }}</header>
+    <div lass="main ">
+    <input type="text" placeholder="Enter New Task" #task /> <br> <br>
+    <button (click)="addtask(task.value)">Add New Task</button><br> <br>
+    <table >
+        <tr>
+          <th>ID</th>
+          <th style="width:70%">NAME</th>
+          <th style="width:70%">status</th>
+          <th>remove</th>
+        </tr>
+        <tr *ngFor="let item of list">
+           <td>{{item.id}} </td>
+           <td> {{item.name}} </td>
+           <td><select>
+               <option value="0"  >new</option>
+               <option value="1" >in-progress</option>
+               <option value="2">done</option>
+           </select> {{item.status}}</td>
+           <td> <button (click)="removetask(item.id)">remove</button></td>
+        </tr>
+      </table>
+    </div>
+</div>
