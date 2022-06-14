@@ -11,14 +11,13 @@ export class Friend {
   ) {
   }
 }
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'To-Do';
+  title = 'To Do list';
   list:any[]=[];
   addtask(item:string){
     this.list.push({id:this.list.length,name:item,});
