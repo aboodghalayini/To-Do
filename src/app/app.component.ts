@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 export class Friend {
   constructor(
@@ -17,12 +17,23 @@ export class Friend {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('task') task!: ElementRef;
   title = 'To Do list';
   list:any[]=[];
+  hasError = false;
+
   addtask(item:string){
-    this.list.push({id:this.list.length,name:item,});
+    console.log('hi')
+    this.hasError = !this.task.nativeElement.value 
+    if (!this.hasError) {
+      this.list.push({id:this.list.length,name:item,});
+    }
   }
   removetask(id:number){
     this.list=this.list.filter(item=>item.id!==id);
+  }
+  checklist(item:string){
+    console.log("hi");
+    item;
   }
 }

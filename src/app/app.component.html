@@ -4,6 +4,9 @@
     <div lass="main">
     <input type="text" placeholder="Enter New Task" #task /> <br> <br>
     <button (click)="addtask(task.value)">Add New Task</button><br> <br>
+    <div  *ngIf="hasError">
+      error
+    </div>
   </div>
 </div>
     <table>
