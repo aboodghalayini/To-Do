@@ -1,39 +1,43 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-
-export class Friend {
-  constructor(
-    public id: number,
-    public firstname: string,
-    public lastname: string,
-    public department: string,
-    public email: string,
-    public country: string
-  ) {
-  }
-}
+import { Component, OnInit} from '@angular/core';
+import { ToDoList } from './models/ToDo.model';
+import { ToDoListService } from './services/to-do-list.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  @ViewChild('task') task!: ElementRef;
+export class AppComponent implements OnInit {
   title = 'To Do list';
-  list:any[]=[];
+  list?:ToDoList[];
+  count :number= 0;
   hasError = false;
-
-  addtask(item:string){
-    console.log('hi')
-    this.hasError = !this.task.nativeElement.value 
-    if (!this.hasError) {
-      this.list.push({id:this.list.length,name:item,});
-    }
+  show = false;
+constructor(private ToDoLists:ToDoListService) { }
+ngOnInit(){
+  this.getList();
+}
+getList(){
+  this.ToDoLists.getList().subscribe(response => {this.list= response;});
+}
+createList(tasks:string,status:string){
+  if (tasks===''){
+    this.hasError=true;
+    return;
   }
-  removetask(id:number){
-    this.list=this.list.filter(item=>item.id!==id);
-  }
-  checklist(item:string){
-    console.log("hi");
-    item;
-  }
+this.hasError=false;
+this.ToDoLists.createList({id:this.count,name:tasks,status:status}).subscribe(Response=>{
+  console.log(Response);this.getList();
+},
+(err) => console.log('Error Occurred (subscribe):', err),)
+  this.count ++;
+}
+delete(id:number){
+  this.ToDoLists.delete(String(id)).subscribe(() => this.getList());
+  console.log('delet')
+}
+update(id:number,name:string,status:string,st:any){
+  this.ToDoLists.update(String(id),name,status).subscribe(Response => {this.getList();});
+  
+  st.selectedIndex=status;
+}
 }

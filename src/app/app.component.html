@@ -1,29 +1,30 @@
-<div class="cinter">
+<div class="center">
     <header>{{ title }}</header>
-    <br> <br><br> <br>
-    <div lass="main">
-    <input type="text" placeholder="Enter New Task" #task /> <br> <br>
-    <button (click)="addtask(task.value)">Add New Task</button><br> <br>
-    <div  *ngIf="hasError">
+    <br><div  *ngIf="hasError">
       {{'task is empty' | titlecase }}
-    </div>
+    </div> <br><br> <br>
+    <div lass="main">
+    <input type="text" placeholder="Enter New Task" (keydown.enter)="createList(task.value,'0')" #task /> <br> <br>
+    <button (click)="createList(task.value,'0')">Add New Task</button><br> <br>
   </div>
 </div>
     <table>
         <tr>
           <th>ID</th>
-          <th style="width:70%">NAME</th>
-          <th style="width:70%">status</th>
+          <th style="width:50%">NAME</th>
+          <th style="width:400%">status</th>
           <th>remove</th>
         </tr>
         <tr *ngFor="let item of list">
-           <td>{{item.id}} </td>
+           <td>{{item.id}} </td> 
            <td> {{item.name}} </td>
-           <td><select>
-               <option value="0"  >new</option>
-               <option value="1" >in-progress</option>
-               <option value="2">done</option>
-           </select> {{item.status}}</td>
-           <td> <button (click)="removetask(item.id)">remove</button></td>
+     <td>
+      <select #st [value]="item.status" (change)="update(item.id,item.name,st.value,st)">
+        <option value="0">new</option>
+        <option value="1">in-progress</option>
+        <option value="2">done</option>
+      </select>
+     </td>
+         <td> <button (click)="delete(item.id)">remove</button></td>
         </tr>
       </table>

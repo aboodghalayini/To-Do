@@ -1,4 +1,4 @@
-table, th, td {
+ table, th, td {
     border: 1px solid black;
     border-radius: 10px;
     
@@ -16,7 +16,7 @@ table, th, td {
     padding: 15px;
   }
   tr:nth-child(even) {
-    background-color: rgba(0, 240, 240, 0.4);
+    background-color: rgba(195, 195, 195, 0.4);
 }
 header {
     text-align: center;
@@ -26,14 +26,18 @@ header {
 select {
     width: 100%;
     padding: 16px 20px;
-    border: none;
     border-radius: 4px;
     opacity: 0.0 - 1.0;
+    border: none;
     background-color: transparent;
+    border-bottom: 2px solid rgba(96, 103, 70, 0.4);
   }
+select option{
+  background-color: rgb(101, 101, 83);
+}
 input[type=text] {
     border: none;
-    border-bottom: 2px solid rgb(0, 238, 255);
+    border-bottom: 2px solid rgb(0, 0, 0);
     opacity: 0.0 - 1.0;
     background-color: transparent;
     font-size: large;
@@ -41,16 +45,16 @@ input[type=text] {
 button{
   border: none;
   color: rgb(0, 0, 0);
-  padding: 15px 32px;
+  padding: 25px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 8px;
   background-color: transparent;
-  border: 2px solid #10edfd;
+  border: 2px solid #000000;
 }
-.cinter{
+.center{
   text-align: center;
   font-size: medium;
   height: 200px;
@@ -64,4 +68,7 @@ button{
   width: 60%;
   padding: 0 20px;
   overflow: hidden;
+}
+::placeholder{
+  color: #3a3a3a;
 }
